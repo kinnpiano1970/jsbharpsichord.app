@@ -1,0 +1,803 @@
+body {
+    background-color: #474F66;
+}
+
+#overlay {
+    position: fixed;
+    /* Sit on top of the page content */
+    display: none;
+    /* Hidden by default */
+    width: 100%;
+    /* Full width (cover the whole page) */
+    height: 100%;
+    /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    /* Black background with opacity */
+    z-index: 2;
+    /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer;
+    /* Add a pointer on hover */
+}
+
+#text {
+    padding: 5rem;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    border-radius: 1rem;
+    background-color: #006666;
+}
+
+.navbar {
+    color: #fff;
+    padding: .5rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    /* max-height: 6rem; */
+    margin-bottom: 1.5rem;
+    background-color: #2877af;
+    /* border: 1px solid #999; */
+}
+
+.titles-text {
+    overflow-x: scroll;
+    max-width: 90rem;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+.titles-text::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+.titles-text {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.active-page {
+    float: right;
+    display: inline-block;
+}
+
+.messages {
+    font-size: 1.6rem;
+    margin-left: 3rem;
+    display: inline-block;
+}
+
+.titles-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-left: 2rem;
+    display: inline-block;
+}
+
+
+/*============================
+=       MAIN APP CONTAINER   =
+==============================*/
+
+.main-container {
+    height: 80vh;
+    max-width: 116rem;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.content-left,
+.content-right {
+    /*border: 5px solid green;*/
+}
+
+
+/* ******************************
+*    LEFT Column Container 
+* ******************************* */
+
+.content-left {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/3;
+}
+
+.flex-item {
+    flex: 1 0 auto;
+    padding: 1rem;
+    margin-bottom: .25rem;
+    border-radius: .5rem;
+    /*background-color: #ddd6d6;*/
+    /*background-color: #2a9d8f;*/
+    background-color: #ebebeb;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.npm-controls {
+    position: relative;
+}
+
+.npm-control {
+    padding: .5rem;
+    cursor: pointer;
+    font-weight: 600;
+    background-color: #dae8f1;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.npm-control label {
+    cursor: pointer;
+}
+
+.npm-elements-container {
+    display: grid;
+    grid-gap: .5rem;
+    grid-template-columns: repeat(2, 1fr);
+    /*border: 1px solid #999;*/
+}
+
+.npm-badge {
+    margin-bottom: .5rem;
+}
+
+.system-messages {
+    position: absolute;
+    padding: 1rem;
+    background-color: bisque;
+    text-align: center;
+}
+
+.system-messages h3 {
+    font-size: 1.8rem;
+}
+
+.info-panel-container {
+    /*border: 1px solid #555;*/
+}
+
+.preview-controls-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.stats {
+    width: 100%;
+    border: none;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    background-color: #dae8f1;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.eemode-label {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+/* ******************************
+*    RIGHT Column Container 
+* ******************************* */
+
+.content-right {
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    grid-column: 3/13;
+}
+
+.content-right div {}
+
+
+/* ******************************
+*   CENTER CONTENT AREA   
+* ******************************* */
+
+.main-content-container {
+    /*background-image: url('img/measures-bg.JPG');*/
+    /*background-image: url('img/app-bg3.jpeg');*/
+    /*background-size: contain;*/
+    moz-box-shadow: inset 0px 2px 4px #333;
+    webkit-box-shadow: inset 0px 2px 4px #333;
+    box-shadow: inset 0px 2px 4px #333;
+    border: 5px solid #006868b2;
+    padding: 0rem 5rem 0rem 1rem;
+    position: relative;
+    overflow: scroll;
+    flex-grow: 8;
+    /*background:
+radial-gradient(circle farthest-side at 0% 50%,#444 23.5%,rgba(240,166,17,0) 0)21px 30px,
+radial-gradient(circle farthest-side at 0% 50%,#333 24%,rgba(240,166,17,0) 0)19px 30px,
+linear-gradient(#444 14%,rgba(240,166,17,0) 0, rgba(240,166,17,0) 85%,#444 0)0 0,
+linear-gradient(150deg,#444 24%,#333 0,#333 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#333 0,#333 76%,#444 0)0 0,
+linear-gradient(30deg,#444 24%,#333 0,#333 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#333 0,#333 76%,#444 0)0 0,
+linear-gradient(90deg,#333 2%,#444 0,#444 98%,#333 0%)0 0 #444;
+background-size:40px 60px;   */
+    /*background-color: #6d695c;
+background-image:
+repeating-linear-gradient(120deg, rgba(255,255,255,.1), 
+rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px),
+repeating-linear-gradient(60deg, rgba(255,255,255,.1), 
+rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px),
+linear-gradient(60deg, rgba(0,0,0,.1) 25%, transparent 25%, 
+transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1)),
+linear-gradient(120deg, rgba(0,0,0,.1) 25%, transparent 25%, 
+transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1));
+background-size: 70px 120px;*/
+    background: radial-gradient(#af9b56 3px, transparent 4px), radial-gradient(#af9b56 3px, transparent 4px), linear-gradient(#d2c893 4px, transparent 0), linear-gradient(45deg, transparent 74px, transparent 75px, #a4a4a4 75px, #a4a4a4 76px, transparent 77px, transparent 109px), linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px), #d2c893;
+    background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
+    background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+.main-content-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+.main-content-container {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.play-from {
+    top: 15rem;
+    right: 20rem;
+    z-index: 10;
+    padding: 2rem;
+    position: absolute;
+}
+
+.select-from-header {
+    text-align: center;
+}
+
+.select-play-from {
+    display: grid;
+    grid-gap: .5rem;
+    grid-template-columns: repeat(16, 4rem);
+}
+
+.select-play-from span {
+    padding: .4rem;
+    cursor: pointer;
+    border: 1px solid #555;
+    font-size: 1.2rem;
+}
+
+
+/* USER SONGS DISPLAY COMPONENT
+----------------------------- */
+
+.user-songs-container {
+    padding-left: 1rem;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.user-songs-table {
+    width: 100%;
+}
+
+th {
+    font-weight: 900;
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+td {
+    padding-left: 1rem;
+}
+
+
+/* MUSIC DISPLAY COMPONENT
+----------------------------- */
+
+#music-display {
+    padding: 0 2rem 0 2rem;
+}
+
+#music-display li {}
+
+li {
+    padding-top: 1rem;
+    margin: .5rem .5rem 0px .5rem;
+}
+
+.list-group-item {
+    /* position: relative; */
+    background-color: #67a4ac;
+}
+
+.playlist-item {
+    transition: all .6s ease-in-out;
+}
+
+.measure-number {
+    font-size: 1rem;
+}
+
+.form-check {
+    float: right;
+}
+
+.check-boxes {}
+
+
+/* UPLOAD-FORM COMPONENT
+----------------------------- */
+
+.upload-form {
+    padding: 1rem;
+}
+
+.saveform-headtext {
+    font-size: 2rem;
+}
+
+form input[type=text],
+select {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    margin: .8rem 0;
+    display: inline-block;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-size: 1.8rem;
+    box-sizing: border-box;
+}
+
+form input::placeholder {
+    font-size: 1.6rem;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+
+/* TUTORIAL COMPONENT
+----------------------------- */
+
+.tutorial-section {
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+.user-songs-table td {
+    padding: 1rem;
+    font-size: 1.8rem;
+}
+
+
+/* Measure Constructor 
+----------------------------- */
+
+.measure-constuctor {
+    flex-grow: .5;
+    padding: .25rem;
+    border: 1px solid #555;
+    background-color: #006868b2;
+}
+
+.beat {
+    flex: 1;
+    font-size: 1.6rem;
+    border: 1px solid #555;
+}
+
+.trebleA-clef,
+.bassA-clef,
+.trebleB-clef,
+.bassB-clef,
+.beat-numbers,
+.treble-constructor,
+.trebleA-constructor,
+.trebleB-constructor,
+.bass-constructor,
+.bassA-constructor,
+.bassB-constructor {
+    /*height: 100%;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: stretch;
+    align-items: stretch;
+    /*border: 1px solid #999;*/
+    padding: .25rem 1rem;
+}
+
+.bass-constructor,
+.bassA-constructor,
+.bassB-constructor {
+    margin-bottom: .5rem;
+}
+
+.treble-constructor,
+.trebleA-constructor,
+.trebleB-constructor {
+    padding-top: 0rem;
+}
+
+.beat-numbers {
+    padding-bottom: 0rem;
+}
+
+.notes,
+.trebleA-cell,
+.bassA-cell,
+.trebleB-cell,
+.bassB-cell {
+    width: 100%;
+    flex: 1 2 0px;
+    font-size: 1.6rem;
+    border-radius: .25rem;
+}
+
+.preview-controls-container {
+    transition: all .5s linear;
+}
+
+
+/* Main Controls 
+----------------------------- */
+
+.button-label {
+    font-weight: 800;
+}
+
+
+/* Piano Keyboard Container 
+-----------------------------  */
+
+.piano-keyboard-container {
+    flex-grow: .5;
+    border: 1px solid #555;
+    background-color: #537877;
+}
+
+.key-label {
+    font-size: 4.7rem;
+    font-weight: bold;
+}
+
+.rest-key {
+    font-size: 3.5rem;
+    fill: yellow;
+}
+
+
+/* *************************
+**   w3 SCHOOLS SLIDER    **
+**************************** */
+
+.slidecontainer {
+    width: 60%;
+    z-index: 3;
+    position: absolute;
+    left: 30%;
+    bottom: 60%;
+    /* background-color: white; */
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+.slider {
+    width: 100%;
+    -webkit-appearance: none;
+    height: .5rem;
+    border-radius: .5rem;
+    background: #b5e7a0;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: #feb236;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: #feb236;
+    cursor: pointer;
+}
+
+
+/* Create smoother box-shadows by layering multiple
+ * shadows with gradually increasing radius and offset */
+
+.shadow {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
+}
+
+.selected {
+    color: red;
+    font-weight: bold;
+    background-color: #00e7ff;
+}
+
+
+/* *************************
+**   w3 SCHOOLS MODAL    **
+**************************** */
+
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content */
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 25%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+.modal-content h2 {
+    text-align: center;
+}
+
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #537877;
+    color: white;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #537877;
+    color: white;
+}
+
+
+/*=============================================
+=            VUE-JS SLIDE/FADE STYLES            =
+=============================================*/
+
+
+/* Slide effect for MAIN SCREEN */
+
+.slide-measure-enter-active {
+    /*transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);*/
+    transition: all .5s ease-in;
+}
+
+.slide-measure-leave-active {
+    /*transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);*/
+    transition: all .5s ease-out;
+}
+
+.slide-measure-enter {
+    transform: translateY(-100px);
+    opacity: 0;
+}
+
+.slide-measure-leave-to {
+    transform: translateY(-100px);
+    opacity: 0;
+}
+
+
+/* Slide effect for MAIN SCREEN */
+
+.slide-fade-enter-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-fade-enter {
+    transform: translateX(-500px);
+    opacity: 0;
+}
+
+.slide-fade-leave-to {
+    transform: translateX(500px);
+    opacity: 0;
+}
+
+
+/* XSISITON effect for other components */
+
+.slideIn-fade-enter-active {
+    transition: all 0.5s ease;
+}
+
+.slideIn-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slideIn-fade-enter,
+.slideIn-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */
+
+{
+    transform: translateY(15px);
+    opacity: 0;
+}
+
+
+/*=============================================
+=       Responsive Media Queries             =
+=============================================*/
+
+@media (max-width: 1150px) {
+    .active-page {
+        display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+
+/*=============================================
+=            FOR SMALLER TABLETS         =
+=============================================*/
+
+@media only screen and (max-width: 960px) {
+    #overlay {
+        display: block;
+    }
+}
+
+@media only screen and (max-height: 800px) {
+    /* #overlay {
+        display: block;
+    } */
+    html {
+        font-size: 50%;
+    }
+    .main-container {
+        height: 40vh;
+    }
+}
+
+@media only screen and (max-height: 580px) {
+    #overlay {
+        display: block;
+    }
+}
+
+
+/* @media screen and (orientation:landscape) and (min-device-width: 320px) and (max-device-width: 450px) {
+    
+    #overlay {
+        display: block;
+    }
+} */
+
+
+/*=============================================
+=            FOR SMARTPHONES        =
+=============================================*/
+
+
+/* @media only screen and (orientation:landscape) and (max-width: 550px) {
+    #overlay {
+        display: block;
+    }
+} */
+
+
+/*=============================================
+=            FOR SMALLEST SCREENS          =
+=============================================*/
+
+
+/* @media only screen and (max-width: 425px) {} */
+
+
+/* @media screen and (orientation:landscape) and (min-device-width: 320px) and (max-device-width: 450px) {
+    
+} */

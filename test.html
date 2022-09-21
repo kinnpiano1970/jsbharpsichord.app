@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+   
+    <style>
+	ul {
+		width: 50%;
+	}
+
+	li {
+		padding: 10px;
+		font-size: 2rem;
+		font-family: arial;
+		list-style-type: none;
+		margin-bottom: .5rem;
+		border: 1px solid #999;
+		
+		
+	}
+</style>
+</head>
+
+<body>
+    
+    <div id="app">
+        
+        <h1>{{ name }}</h1>
+		
+	<ul>
+		<li v-for="(color, index) in colors" :style="{background: colors[index]}">{{color}}</li>
+	</ul>
+		
+        
+    
+     
+    </div>
+    
+    
+    
+    <script src="js/vue.min.js"></script>
+    <script>
+    
+        const app = new Vue({
+            
+            
+            el: '#app',
+            
+            data: {
+                
+                name: 'Hello VUEJs',
+				colors: ['red','blue','orange','green','purple','aqua','pink','yellow']
+                
+      
+                
+            },
+            methods: {
+                
+                
+                  
+            },
+            computed: {
+                
+                  
+                
+            }
+            
+            
+            
+            
+        })
+    
+    
+    
+    
+    
+    
+    
+    </script>
+</body>
+</html>

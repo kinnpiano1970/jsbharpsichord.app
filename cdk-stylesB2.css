@@ -1,0 +1,1231 @@
+:root {
+	
+	/* CORE colors  */
+	--color-dark: #ECEFF1;
+	--color-light: #FAFAFA;
+	--color-primary: #1266F1;
+	--color-secondary: #B23CFD;
+	--color-success: #00B74A;
+	--color-warning: #FFA900;
+	--color-danger: #F93154;
+	--color-info: #39C0ED;
+	/* COLOR VARIANTS */
+	/* DARK color variants */
+	--color-dark-v1: #757575;
+	--color-dark-v2: #424242;
+	--color-dark-v3: #546E7A;
+	--color-dark-v4: #37474F;
+	/* LIGHT color variants */
+	--color-light-v1: #EEEEEE;
+	--color-light-v2: #BDBDBD;
+	--color-light-v3: #B0BEC5;
+	--color-light-v4: #B0BEC5;
+	/* PRIMARY color variants */
+	--color-primary-v1: #536DFE;
+	--color-primary-v2: #64B5F6;
+	--color-primary-v3: #283593;
+	--color-primary-v4: #0277BD;
+	/* SECONDARY color variants */
+	--color-secondary-v1: #E040FB;
+	--color-secondary-v2: #EA80FC;
+	--color-secondary-v3: #5E35B1;
+	--color-secondary-v4: #6200EA;
+	/* SUCCESS color variants */
+	--color-success-v1: #00C853;
+	--color-success-v2: #69F0AE;
+	--color-success-v3: #00897B;
+	--color-success-v4: #558B2F;
+	/* WARNING color variants */
+	--color-warning-v1: #FF9100;
+	--color-warning-v2: #FFB74D;
+	--color-warning-v3: #E65100;
+	--color-warning-v4: #FF3D00;
+	/* DANGER color variants */
+	--color-danger-v1: #FF5252;
+	--color-danger-v2: #F48FB1;
+	--color-danger-v3: #B71C1C;
+	--color-danger-v4: #D81B60;
+	/* INFO color variants */
+	--color-info-v1: #00B0FF;
+	--color-info-v2: #4DD0E1;
+	--color-info-v3: #0277BD;
+	--color-info-v4: #0091EA;
+	
+}
+
+
+/* ----- EXTERNAL FONTS ------------------------
+*************************************************/
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+/* -------- BASIC CSS RESET ---------------------
+http://meyerweb.com/eric/tools/css/reset/ 
+   v1.0 | 20110126
+   License: none (public domain)  
+****************************************** */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    font-size: 1.6rem;
+    line-height: 1.45;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-spacing: 0;
+}
+
+img {
+    width: 100%;
+    border: 5px solid #999;
+}
+
+
+/* ------ Paul Irish Box Sizing Fix -------------
+Apply a natural box layout model to all elements, 
+but allowing components to change
+************************************************** */
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+
+/* ---------- BASIC STYLES ------------- 
+***************************************** */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+/*h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 3.6rem;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    font-size: 3rem;
+    line-height: 4.5rem;
+}
+
+h3 {
+    margin-bottom: 1.2rem;
+    font-size: 2.4rem;
+}
+
+h4 {
+    font-size: 2rem;
+}
+
+h5 {
+    font-size: 1.8rem;
+}
+
+h6 {
+    font-size: 1.6rem;
+}
+
+.text_center {
+    text-align: center;
+}
+
+p {
+    margin-bottom: 3.072rem;
+    line-height: 2.56rem;
+    font-size: 1.6rem;
+}
+*/
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2
+}
+
+.h1,
+h1 {
+    font-size: calc(1.375rem + 1.5vw)
+}
+
+@media(min-width:1200px) {
+
+    .h1,
+    h1 {
+        font-size: 2.5rem
+    }
+}
+
+.h2,
+h2 {
+    font-size: calc(1.325rem + .9vw)
+}
+
+@media(min-width:1200px) {
+
+    .h2,
+    h2 {
+        font-size: 2rem
+    }
+}
+
+.h3,
+h3 {
+    font-size: calc(1.3rem + .6vw)
+}
+
+@media(min-width:1200px) {
+
+    .h3,
+    h3 {
+        font-size: 1.75rem
+    }
+}
+
+.h4,
+h4 {
+    font-size: calc(1.275rem + .3vw)
+}
+
+@media(min-width:1200px) {
+
+    .h4,
+    h4 {
+        font-size: 1.5rem
+    }
+}
+
+.h5,
+h5 {
+    font-size: 1.25rem
+}
+
+.h6,
+h6 {
+    font-size: 1.6rem
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1.6rem;
+	line-height: 2.56rem;
+    font-size: 1.6rem;
+}
+nav {}
+
+li {}
+
+
+/*============================
+=         TABLE STYLES       =
+============================= */
+
+table {
+    width: 100%;
+    background-color: #fff;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    border: 1px solid #ddd;
+}
+
+td {
+	padding: .5rem;
+    /* width: 100%; */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+th {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: left;
+    background-color: #B0BEC5;
+    color: white;
+}
+
+
+/* *************************
+		HOW B.E.M WORKS
+   ************************
+   
+In this CSS methodology a block is a TOP-LEVEL
+abstraction of a new component, for example a 
+button: .btn { }. This block should be thought 
+of as a parent. 
+
+Child items, or elements, can be placed inside 
+and these are denoted by two underscores following 
+the name of the block like .btn__price { }. 
+
+Finally, modifiers can manipulate the block so that 
+we can theme or style that particular component without
+inflicting changes on a completely unrelated module. 
+This is done by appending two hyphens to the name of 
+the block just like bg--orange.
+
+
+*/
+
+
+
+/* ***| Base Button Styles |*** */
+/*
+.ck-btn,
+.ck-btn-ol {
+    border: 0;
+    border-radius: 0.25rem;
+    background: #1E88E5;
+    color: black;
+    font-family: -system-ui, sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+    white-space: nowrap;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    margin: 0.25rem;
+    cursor: pointer;
+}
+*/
+.ck-btn,
+.ck-btn-ol {
+
+	display: inline-block;
+    color: #4f4f4f;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	font-weight: bold;
+    background-color: transparent;
+    border: .125rem solid transparent;
+    padding: 1rem 1.5rem;
+	/*padding: .75rem 1.5rem;*/
+    border-radius: .25rem;
+    -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out
+    
+	
+	
+}
+
+.ck-btn {
+    border: none;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
+}
+
+.ck-btn:hover {
+    /*color: black;*/
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 4px 12px 0 rgba(0, 0, 0, 0.19);
+    transition: box-shadow .1s ease-in;
+}
+
+.ck-btn.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+.ck-btn[disabled="true"] {
+	opacity: 0.65;
+    cursor: not-allowed;	
+}
+
+
+
+/* BASIC Button Sizing */
+
+.btn--sm {
+	
+	padding: .75rem 1.25rem;
+}
+.btn--lg {
+    padding: 1.5rem 2.25rem;
+}
+
+.btn--xl {
+    padding: 2rem 2.75rem;
+}
+
+
+/* ***| PILL BUTTON Styles |*** */
+
+.ck-btn-pill {
+    width: 15rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    height: 3.5rem;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 5rem;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-color: #1E88E5;
+}
+
+.ck-btn-pill-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.ck-btn-pill-hover:focus {
+    outline: none;
+}
+
+
+/* Pill Button Sizing */
+
+.btn--pill-sm {
+    width: 12rem;
+    height: 3rem;
+}
+
+.btn--pill-md {}
+
+.btn--pill-lg {}
+
+
+/* ***| GRADIENT BUTTON Styles |*** */
+
+.ck-btn-grad {
+    border: none;
+    /* padding: 1.5rem 4.5rem; */
+    padding: 1rem 4rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    /*box-shadow: 0 0 20px #eee;*/
+    /*box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;*/
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 1rem;
+    display: inline-block;
+    background-color: #1E88E5;
+}
+
+
+/* GRADIENT Button Sizing */
+
+.btn--grad-sm {}
+
+.btn--grad-md {
+    font-size: 1.5rem;
+    padding: 1.25rem 4.25rem;
+}
+
+.btn--grad-lg {
+    font-size: 1.75rem;
+    padding: 1.5rem 4.5rem;
+}
+
+
+/* ***| OUTLINE Button Styles |*** */
+
+.ck-btn-ol {
+    border: 1.5px solid black;
+    background-color: transparent;
+}
+
+.ck-btn-ol:hover {
+    /*color: black;*/
+    background-color: #EEEEEE;
+    transition: background-color .1s ease-in;
+}
+/* BOOTSTRAP BUTTON CLONE */
+.ck-btn-bs {
+    display: inline-block;
+    color: #4f4f4f;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: .125rem solid transparent;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out
+}
+/*=================================
+=           BADGE STYLES           =
+===================================*/
+
+.ck-badge {
+    display: inline-block;
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+	border-radius: .27rem;
+	border: 1px solid #999;
+}
+
+.ck-badge:empty {
+    display: none
+}
+
+.ck-btn .ck-badge {
+    position: relative;
+    top: -1px
+}
+/*=================================
+=      BACKGROUND COLORS          =
+===================================*/
+
+/* ***| Background LIGHT |*** */
+
+.bg--light {
+    color: black;
+    background-color: var(--color-light);
+    /* Gray 50 */
+}
+
+.bg--light-v1 {
+    color: black;
+    background-color: var(--color-light-v1);
+    /* Gray 200 */
+    
+}
+
+.bg--light-v2 {
+    color: black;
+    background-color: var(--color-light-v2);
+    /*  Gray 400 */
+}
+
+.bg--light-v3 {
+    color: black;
+    background-color: var(--color-light-v3);
+    /* Blue Gray 200*/
+}
+
+.bg--light-v4 {
+    color: white;
+    background-color: var(--color-light-v4);
+    /* Blue Gray 400 */
+}
+
+
+/* ***| Button DARK |*** */
+
+.bg--dark {
+    color: black;
+    background-color: var(--color-dark);
+    /* Blue Gray 50 */
+}
+
+.bg--dark-v1 {
+    color: white;
+    background-color: var(--color-dark-v1);
+    /* Gray 600 */
+    
+}
+
+.bg--dark-v2 {
+    color: white;
+    background-color: var(--color-dark-v2);
+    /* Gray 800 */
+}
+
+.bg--dark-v3 {
+    color: white;
+    background-color: var(--color-dark-v3);
+    /* Blue Gray 600 */
+}
+
+.bg--dark-v4 {
+    color: white;
+    background-color: var(--color-dark-v4);
+    /* Blue Gray 800 */
+}
+
+/* ***| PRIMARY Colors |*** */
+
+.bg--primary {
+    color: white;
+    background-color: var(--color-primary);
+}
+
+.bg--primary-v1 {
+    color: white;
+    background-color: var(--color-primary-v1);
+    /* Indigo A200 */
+    
+}
+
+.bg--primary-v2 {
+    color: white;
+    background-color: var(--color-primary-v2);
+    /* Blue 300 */
+}
+
+.bg--primary-v3 {
+    color: white;
+    background-color: var(--color-primary-v3);
+    /* Indigo 600 */
+}
+
+.bg--primary-v4 {
+    color: white;
+    background-color: var(--color-primary-v4);
+    /* Light Blue 800 */
+}
+
+
+/* ***| Button SECONDARY |*** */
+
+.bg--secondary {
+    color: white;
+    background-color: var(--color-secondary);
+}
+
+.bg--secondary-v1 {
+    color: white;
+    background-color: var(--color-secondary-v1);
+    /* Purple A200 */
+}
+
+.bg--secondary-v2 {
+    color: white;
+    background-color: var(--color-secondary-v2);
+    /* Purple A100 */
+}
+
+.bg--secondary-v3 {
+    color: white;
+    background-color: var(--color-secondary-v3);
+    /* Deep Purple  600 */
+}
+
+.bg--secondary-v4 {
+    color: white;
+    background-color: var(--color-secondary-v4);
+    /* Deep Purple A700 */
+}
+
+
+/* ***| Button SUCCESS |*** */
+
+.bg--success {
+    color: white;
+    background-color: var(--color-success);
+}
+
+.bg--success-v1 {
+    color: white;
+    background-color: var(--color-success-v1);
+    /* Green A700 */
+    
+}
+
+.bg--success-v2 {
+    color: black;
+    background-color: var(--color-success-v2);
+    /* Green A200 */
+    
+}
+
+.bg--success-v3 {
+    color: white;
+    background-color: var(--color-success-v3);
+    /* Teal 600 */
+    
+}
+
+.bg--success-v4 {
+    color: white;
+    background-color: var(--color-success-v4);
+    /* Light Green 800 */
+    
+}
+
+
+/* ***| Button INFO |*** */
+
+.bg--info {
+    color: white;
+    background-color: var(--color-info);
+}
+
+.bg--info-v1 {
+    color: white;
+    background-color: var(--color-info-v1);
+    /* Light Blue A400 */
+    
+}
+
+.bg--info-v2 {
+    color: white;
+    background-color: var(--color-info-v2);
+    /* Cyan 300 */
+    
+}
+
+.bg--info-v3 {
+    color: white;
+    background-color: var(--color-info-v3);
+    /* Light Blue 800 */
+    
+}
+
+.bg--info-v4 {
+    color: white;
+    background-color: var(--color-info-v4);
+    /* Light Blue A700 */
+    
+}
+
+
+/* ***| Button WARNING |*** */
+
+.bg--warning {
+    color: white;
+    background-color: var(--color-warning);
+}
+
+.bg--warning-v1 {
+    color: white;
+    background-color: var(--color-warning-v1);
+    /* Orange  A400 */
+    
+}
+
+.bg--warning-v2 {
+    color: white;
+    background-color: var(--color-warning-v2);
+    /* Orange 300 */
+    
+}
+
+.bg--warning-v3 {
+    color: white;
+    background-color: var(--color-warning-v3);
+    /* Orange 900 */
+    
+}
+
+.bg--warning-v4 {
+    color: white;
+    background-color: var(--color-warning-v4);
+    /* Deep Orange A400 */
+    
+}
+
+
+/* ***| Button DANGER |*** */
+
+.bg--danger {
+    color: white;
+    background-color: var(--color-danger);
+}
+
+.bg--danger-v1 {
+    color: white;
+    background-color: var(--color-danger-v1);
+    /* Red  A200 */
+    
+}
+
+.bg--danger-v2 {
+    color: white;
+    background-color: var(--color-danger-v2);
+    /* Pink 200 */
+    
+}
+
+.bg--danger-v3 {
+    color: white;
+    background-color: var(--color-danger-v3);
+    /* Red 900 */
+    
+}
+
+.bg--danger-v4 {
+    color: white;
+    background-color: var(--color-danger-v4);
+    /* Pink 600 */
+    
+}
+
+
+/* Outline Styles */
+
+.ol--primary {
+    color: var(--color-primary);
+    border: 1.5px solid var(--color-primary);
+}
+
+.ol--secondary {
+    color: var(--color-secondary);
+    border: 1.5px solid var(--color-secondary);
+}
+
+.ol--success {
+    color: var(--color-success);
+    border: 1.5px solid var(--color-success);
+}
+
+.ol--warning {
+    color: var(--color-warning);
+    border: 1.5px solid var(--color-warning);
+}
+
+.ol--info {
+    color: var(--color-info);
+    border: 1.5px solid var(--color-info);
+}
+
+.ol--danger {
+    color: var(--color-danger);
+    border: 1.5px solid var(--color-danger);
+}
+
+
+/*=================================
+=           BADGE STYLES           =
+===================================*/
+
+/*.ck-badge {
+    display: inline-block;
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+	border-radius: .27rem;
+	border: 1px solid #999;
+}
+
+.ck-badge:empty {
+    display: none
+}
+
+.ck-btn .ck-badge {
+    position: relative;
+    top: -1px
+}
+
+*/
+/*=================================
+=           UTILITIES             =
+===================================*/
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* Create smoother box-shadows by layering multiple
+ * shadows with gradually increasing radius and offset */
+
+.box--shadow {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
+}
+
+.inset--shadow {
+    -moz-box-shadow: inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow: inset 0 0 10px #000000;
+}
+
+.inset--text {
+    background-color: #565656;
+    color: transparent;
+    text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.5);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+}
+
+.bg--texture-v1 {
+    background: radial-gradient(circle farthest-side at 0% 50%, #444 23.5%, rgba(240, 166, 17, 0) 0)21px 30px, radial-gradient(circle farthest-side at 0% 50%, #333 24%, rgba(240, 166, 17, 0) 0)19px 30px, linear-gradient(#444 14%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 85%, #444 0)0 0, linear-gradient(150deg, #444 24%, #333 0, #333 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #333 0, #333 76%, #444 0)0 0, linear-gradient(30deg, #444 24%, #333 0, #333 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #333 0, #333 76%, #444 0)0 0, linear-gradient(90deg, #333 2%, #444 0, #444 98%, #333 0%)0 0 #444;
+    background-size: 40px 60px;
+}
+
+.bg--texture-v2 {
+    background-color: #555;
+    background-image: linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444), linear-gradient(-45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444);
+    background-size: 60px 60px;
+}
+
+.bg--texture-v3 {
+    background: linear-gradient(135deg, #444 22px, #333 22px, #333 24px, transparent 24px, transparent 67px, #333 67px, #333 69px, transparent 69px), linear-gradient(225deg, #444 22px, #333 22px, #333 24px, transparent 24px, transparent 67px, #333 67px, #333 69px, transparent 69px)0 64px;
+    background-color: #444;
+    background-size: 64px 128px
+}
+
+
+/* *************************
+**   w3 SCHOOLS MODAL    **
+**************************** */
+
+
+/* The Modal (background) */
+
+.ck-modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content */
+
+.modal__content {
+    display: inherit;
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: open-animation;
+    -webkit-animation-duration: 0.4s;
+    animation-name: open-animation;
+    animation-duration: 0.4s
+	
+	
+}
+
+.modal__body {
+    padding: 2px 16px;
+}
+
+.modal__header,
+.modal__footer {
+    padding: 2px 16px;
+    background-color: #1976D2;
+    color: white;
+}
+
+.modal__close:hover,
+.modal__close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* The Close Button */
+
+.modal__close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+	
+	
+}
+
+
+/* Add Animation */
+
+@-webkit-keyframes open-animation {
+    from {
+		transform: translate(250px,-250px);
+        /*top: -300px;*/
+        opacity: 0
+    }
+    to {
+		transform: translate(0px,0px);
+        /*top: 0;*/
+        opacity: 1
+    }
+}
+
+@keyframes open-animation {
+    from {
+		transform: translate(250px,-250px);
+        /*top: -300px;*/
+        opacity: 0
+    }
+    to {
+		transform: translate(0px,0px);
+        /*top: 0;*/
+        opacity: 1
+    }
+}
+
+
+/* ***| Modal Sizing | *** */
+
+.modal--md {
+    width: 60%;
+}
+
+.modal--sm {
+    width: 40%;
+}
+
+
+/* *************************
+**   w3 SCHOOLS SLIDER    **
+**************************** */
+
+.ck-slider-container {
+    width: 100%;
+	background-color: #fff;
+}
+
+.ck__slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.ck__slider:hover {
+    opacity: 1;
+}
+
+.ck__slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #1976D2;
+    cursor: pointer;
+}
+
+.ck__slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #1976D2;
+    cursor: pointer;
+}
+
+.slider--thumb-lg::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #1976D2;
+    cursor: pointer;
+}
+
+
+

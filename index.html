@@ -1,0 +1,531 @@
+-<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <!-- <meta name="description" content=""> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="cdk-stylesB2.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="overlay">
+        <div id="text">The J.S.B Harpsichord is designed to be used on Large Screen Devices</div>
+    </div>
+    <div id="app">
+        <!-- Start your project here-->
+        <!-- Play From Panel -->
+        <transition name="slideIn-fade">
+            <div v-show="showPlayFrom" class="play-from shadow bg--dark-v1" role="alert">
+                <h3 class="select-from-header">Select a Measure To Play From</h3>
+                <div class="select-play-from">
+                    <span v-for="(n,index) in currsong.systems.length" v-on:click="selectMeasure(index)" class="ck-badge bg--warning">{{n}}</span>
+                </div>
+            </div>
+        </transition>
+        <!-- The Modal -->
+        <div v-bind:style="{ display: showModal }" id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>{{modalMessage}}</h2>
+                </div>
+                <div class="modal-body">
+                    <h2>Please Wait!!</h2>
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-success" style="width: 3rem; height: 3rem;" accesskey="" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <h3>J.S.B Harpsichord</h3>
+                </div>
+            </div>
+        </div>
+        <!-- END Modal -->
+        <!-- Navbar -->
+        <nav class="navbar">
+            <!--  <button v-on:click="testMe" class="ck-btn">test</button> -->
+            <!-- <button class="ck-btn bg--dark">button</button> -->
+            <!-- Go to HOME PAGE-(SHOW MUSIC ENTRY page)  -->
+            <button v-on:click="showPage('music')" class="ck-btn bg--dark">
+                <i class="fas fa-music fa-lg"></i>
+            </button>
+            <!-- SAVE SONG Button -->
+            <button v-on:click="showPage('upload')" class="ck-btn bg--dark">
+                <i class="far fa-save fa-lg"></i>
+            </button>
+            <!-- LOAD USER SONGS Button -->
+            <!-- 'http://127.0.0.1:3000/users' -->
+            <button v-on:click="checkIfDownloaded(urls.userSongs,'user')" class="ck-btn  bg--dark">
+                <i class="fas fa-download fa-lg"></i>
+            </button>
+            <button v-on:click="showPage('tutorial')" class="ck-btn bg--dark">
+                <i class="fas fa-info-circle fa-lg"></i>
+            </button> {{ testing }}
+            <span class="titles-text">{{title}} ~ {{composer}}</span>
+            <span class="ck-badge bg--warning-v3 active-page">
+                <h3>{{activePage}}</h3>
+            </span>
+
+        </nav>
+        <!-- END  NAVbar -->
+        <div class="main-container">
+            <!-- Start APP Content HERE -->
+            <!-- <div class="row"> -->
+            <!-- LEFT COLUMN CONTAINER -->
+            <div class="content-left" style="">
+                <!-- Notes Per Measure Controls Container -->
+                <div class="npm-controls flex-item">
+                    <!-- System messages panel -->
+                    <transition name="slideIn-fade">
+                        <div v-show="showMessage" class="system-messages shadow">
+                            <h3>{{sysMessage}}</h3>
+                        </div>
+                    </transition>
+                    <span class="ck-badge bg--warning npm-badge">Notes Per Measure</span>
+                    <div class="npm-elements-container">
+                        <div class="npm-control">
+                            <!-- <span class="checkmark">&nbsp;4</span> -->
+
+                            <input type="radio" v-model="npm" id="4" value="4" name="radio">
+                            <label for="4">4</label>
+                            <!-- <span class="checkmark">4</span> -->
+                        </div>
+
+                        <div class="npm-control">
+                            <input type="radio" v-model="npm" id="6" value="6" checked="checked" name="radio">
+                            <label for="6">6</label>
+                        </div>
+
+                        <div class="npm-control">
+                            <!-- <span class="checkmark">&nbsp;8</span> -->
+                            <input type="radio" v-model="npm" id="8" value="8" name="radio">
+                            <label for="8">8</label>
+                        </div>
+
+                        <div class="npm-control">
+                            <input type="radio" v-model="npm" id="9" value="9" name="radio">
+                            <label for="9">9</label>
+                        </div>
+
+                        <div class="npm-control">
+                            <!-- <span class="checkmark">12</span> -->
+                            <input type="radio" v-model="npm" id="12" value="12" name="radio">
+                            <label for="12">12</label>
+                        </div>
+                        <div class="npm-control">
+                            <input type="radio" v-model="npm" id="16" value="16" name="radio">
+                            <label for="16">16</label>
+                        </div>
+                    </div>
+                    <!-- END NPM Elements container -->
+
+                </div>
+                <!-- END NPM Controls Container-->
+
+                <!-- Info Container -->
+                <div class="info-panel-container flex-item">
+                    <span id="show-beat" class="stats ck-badge">
+                        <span>Beat:</span>
+                        <span>{{beat | showBeat}}</span>
+                    </span>
+
+                    <br />
+                    <span id="current-measure" class="stats ck-badge">
+                        <span>Measure:</span><br />
+                        <span>{{measureCount}}</span>
+                    </span>
+                    <br />
+                    <span id="total-measures" class="stats ck-badge">
+                        <span>Total Measures:</span><br />
+                        <span>{{totalMeasures}}</span>
+                    </span>
+                    <br />
+                    <span id="show-note" class="stats ck-badge">
+                        <span>Note:</span><br />
+                        <span>{{note}}</span>
+                    </span>
+                    <span class="stats ck-badge">
+                        <span>Enharmonic Mode</span>
+                        <br />
+                        <input type="radio" id="flats" value="flats" v-model="eeMode">
+                        <label class="eemode-label" for="flats">&#9837;</label>
+                        <br>
+                        <input type="radio" id="sharps" value="sharps" v-model="eeMode">
+                        <label class="eemode-label" for="sharps">&nbsp;&#9839;</label>
+                        <br>
+                        <span>Mode: {{ eeMode }}</span>
+                    </span>
+                    <span v-on:click="showTempoControl = !showTempoControl" id="" class="stats ck-badge">
+                        <span>Tempo:</span><br />
+                        <span>{{currsong.tempo | showAndSetTempo}}</span><br /><br />
+                        <button class="ck-btn bg--warning">Set Tempo</button>
+                    </span>
+                    <!--PLAY FROM MEASURE BUTTON  -->
+                    <span class="stats ck-badge">
+                        <button v-on:click="openPlayFrom" type="button" class="ck-btn">
+                            Play From
+                            <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
+                        </button>
+                    </span>
+                    <span class="stats ck-badge">
+                        <!-- SHOW CHECKBOX & COPY/PASTE BUTTON  -->
+                        <button v-on:click="showcheckbox = !showcheckbox" class="ck-btn">
+                            EDIT
+                        </button>
+                        <!-- COPY/PASTE BUTTON  -->
+                        <transition name="slideIn-fade">
+                            <button v-on:click="copyPasteMeasures" v-show="showcheckbox" class="ck-btn">
+                                <i class="fas fa-copy fa-lg"></i> <i class="fas fa-long-arrow-alt-right"></i> <i class="fas fa-paste fa-lg"></i>
+                            </button>
+                        </transition>
+                    </span>
+
+                </div>
+                <!-- END info panel -->
+                <!-- MAIN CONTROLS -->
+                <div class="main-controls flex-item">
+
+                </div>
+                <!-- END Main Controls -->
+            </div>
+            <!-- END LEFT column -->
+            <!-- RIGHT COLUMN CONTAINER -->
+            <div class="content-right" style="">
+                <!-- Tempo Slider Control -->
+                <transition name="slideIn-fade">
+                    <div v-show="showTempoControl" class="slidecontainer bg--danger-v3 shadow">
+                        <!-- <span class="">Slower</span> -->
+                        <input v-model="currsong.tempo" type="range" min="60" max="320" value="120" step="1" class="slider" id="myRange">
+                        <!-- <span class="">Faster</span> -->
+                    </div>
+                </transition>
+                <!-- MAIN CONTENT AREA (labeled as class="middle" in previous version) -->
+                <div class="main-content-container">
+                    <!-- Upload Songs -->
+                    <div id="upload-container">
+                        <transition name="slide-fade">
+                            <upload-download :currsong="currsong" :upload="upload" :clearform="clearform" :state="state" v-show="showupload">
+                            </upload-download>
+                        </transition>
+                    </div>
+                    <!-- Music Display -->
+                    <div id="music-container">
+                        <transition name="slide-fade">
+                            <music-display :currsong="currsong" :selectcell="selectcell" :checkedbox="checkedbox" :showcheckbox="showcheckbox" :showallvoices="showallvoices" v-show="showMusic" />
+                        </transition>
+                    </div>
+                    <!-- END Music Display -->
+                    <!-- Songs Playlist  Display -->
+                    <div id="playlist-container">
+                        <transition name="slide-fade">
+                            <user-songs :selectsong="selectsong" :usersongs="usersongs" v-show="showUserSongs">
+                            </user-songs>
+                        </transition>
+                    </div>
+                    <!-- END Songs Playlist  Display -->
+                    <!-- Tutorial Display -->
+                    <div id="tutorial-container">
+                        <transition name="slide-fade">
+                            <app-tutorial v-show="showTutorial"></app-tutorial>
+                        </transition>
+                    </div>
+                    <!-- END Tutorial Display -->
+                </div>
+                <!-- MEASURE CONSTRUCTOR  -->
+                <div class="measure-constuctor">
+                    <!-- BEAT NUMBERS -->
+                    <div class="beat-numbers">
+
+                        <span v-for="(n,index) in Number(npm)" :style="{background: beatNumStyles[npm][index]}" class="ck-badge bg--warning-v4 beat">{{n}}</span>
+                    </div>
+
+                    <!-- TrebleA Constructor -->
+                    <div v-on:click="selectcell($event)" class="trebleA-constructor note-container">
+                        <input v-for="n in Number(npm)" type="text" class="notes trebleA-notes" name="" cols="30" rows="10" value="rest" readonly>
+                        </input>
+                    </div>
+                    <!-- BassA Constructor -->
+                    <div v-on:click="selectcell($event)" class="bassA-constructor note-container">
+                        <input v-for="n in Number(npm)" type="text" class="notes bassA-notes" name="" cols="30" rows="10" value="rest" readonly>
+                        </input>
+                    </div>
+                    <!-- TrebleB Constructor -->
+                    <transition name="slide-measure">
+                        <div v-on:click="selectcell($event)" v-show="showallvoices" class="trebleB-constructor note-container">
+                            <input v-for="n in Number(npm)" type="text" class="notes trebleB-notes" name="" cols="30" rows="10" value="rest" readonly>
+                            </input>
+                        </div>
+                    </transition>
+                    <!-- BassB Constructor -->
+                    <transition name="slide-measure">
+                        <div v-on:click="selectcell($event)" v-show="showallvoices" class="bassB-constructor note-container">
+                            <input v-for="n in Number(npm)" type="text" class="notes bassB-notes" name="" cols="30" rows="10" value="rest" readonly>
+                            </input>
+                        </div>
+                    </transition>
+
+                    <!-- Preview Controls container -->
+                    <div class="preview-controls-container">
+                        <!-- PLAY Button -->
+                        <button v-on:click="play" v-bind:disabled="state.isPreview" :class="{'bg--danger-v1': state.isPlaying, 'disabled': state.isPreview}" class="ck-btn-pill bg--success-v1">
+                            <i v-show="!state.isPlaying" class="fas fa-play fa-lg"></i>
+                            <i v-show="state.isPlaying" class="fas fa-stop fa-lg"></i>
+                        </button>
+                        <!-- Measure Controls -->
+                        <!-- ADD MEASURE BUTTON -->
+                        <button v-on:click="add" v-bind:disabled="state.isPlaying || state.isPreview" :class="{'disabled': state.isPlaying || state.isPreview}" type="button" class="ck-btn-pill btn--pill-sm bg--warning">
+                            <i class="fas fa-plus-square"></i>
+                        </button>
+                        <!-- REMOVE SINGLE MEASURE BUTTON -->
+                        <button v-on:click="remove" v-bind:disabled="state.isPlaying || state.isPreview" :class="{'disabled': state.isPlaying || state.isPreview}" type="button" class="ck-btn-pill btn--pill-sm bg--warning">
+                            <i class="fas fa-minus-square"></i>
+                        </button>
+                        <!--REMOVE ALL MEASURES BUTTON  -->
+                        <button v-on:click="removeAll" v-bind:disabled="state.isPlaying || state.isPreview" :class="{'disabled': state.isPlaying || state.isPreview}" type="button" class="ck-btn-pill btn--pill-sm bg--danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                        <!--  Preview Play Measure Constructor Button -->
+                        <button v-on:click="preview" v-bind:disabled="state.isPlaying" :class="{'bg--danger-v1': state.isPreview, 'disabled': state.isPlaying}" class="ck-btn-pill btn--pill-sm bg--secondary-v1">
+                            <i v-show="state.isPreview" class="far fa-stop-circle fa-lg text-danger"></i>
+                            <i v-show="!state.isPreview" class="far fa-play-circle fa-lg"></i>
+                        </button>
+                        <!--  Preview Clear Measure Constructor Button -->
+                        <button v-on:click="clear" v-bind:disabled="state.isPlaying || state.isPreview" :class="{'disabled': state.isPlaying || state.isPreview}" class="ck-btn-pill btn--pill-sm bg--secondary-v1">
+                            <i class="fas fa-eraser fa-lg"></i>
+                        </button>
+                        <!-- Show all voices -->
+                        <button v-on:click="showallvoices = !showallvoices" v-bind:disabled="state.isPlaying || state.isPreview" :class="{'disabled': state.isPlaying || state.isPreview}" type="button" class="ck-btn-pill btn--pill-sm bg--info-v4">
+                            <span v-show="!showallvoices" class="button-label">2 Voices</span>
+                            <span v-show="showallvoices" class="button-label">4 Voices</span>
+                            <!--    <i v-show="showallvoices" class="fas fa-minus-circle"></i>
+							<i v-show="!showallvoices" class="fas fa-plus-circle"></i> -->
+
+                        </button>
+                    </div>
+                    <!-- END Preview Controls container -->
+                </div>
+                <!-- end measure constructor section -->
+                <!-- Piano Keyboard container -->
+                <div v-on:click="keyPress" v-on:mouseover="mouseHover($event)" class="piano-keyboard-container">
+
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <svg v-show="showPianoKeys" viewBox="50 0 3246.4375 524.21875" xmlns="http://www.w3.org/2000/svg">
+                        <text x="57" y="60" data-key="rest" class="key-label rest-key">REST</text>
+                        <rect id="rest" class="key" x="50" y="20" width="150" height="150"
+                            style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" />
+                        <rect id="rest" class="key" x="3175" y="20" width="150" height="150"
+                            style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" />
+                        <g transform="translate(-.15625 -526.12)" stroke="#000">
+                            <path class="key" id="C1"
+                                d="m168.15 527.93h45.723v345.34h34.427v172.13l-6.4717 3.7365h-67.223l-6.8627-3.9623z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="Cs1_Db1" d="m221.54 531.97v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="D1"
+                                d="m269.66 527.41v345.75h-18.257v171.92l7.5613 4.3655h65.849l6.9048-3.9864v-172.49h-17.745v-345.56z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="Ds1_Eb1" d="m321.25 531.42v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="E1"
+                                d="m369.87 527.41v345.59h-34.427v172.13l7.7444 4.4711h65.412l7.4137-4.2801v-517.91z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="F1"
+                                d="m419.63 527.41v517.32l8.3497 4.8207h65.345l6.8121-3.9331v-172.35h-37.339v-345.86z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="Fs1_Gb1" d="m467.99 531.42v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="Gs1_Ab1" d="m563.74 531.42v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="As1_Bb1" d="m659.49 531.42v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="G1"
+                                d="m515.65 527.41v345.46h-11.834v172.4l6.8212 3.9382h66.201l6.6943-3.8651v-172.48h-24.983v-345.46z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="A1"
+                                d="m611.53 527.41v345.59h-23.534v172l7.8723 4.5451h65.688l7.0848-4.0904v-172.72h-14.212v-345.32z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="B1"
+                                d="m707.15 527.41v345.59h-36.175v172.4l7.4845 4.3211h65.807l7.2323-4.1755v-518.14z"
+                                fill="white" stroke-width="1.065" />
+
+                            <path class="key" id="C2"
+                                d="m755.1 527.72h45.723v345.34h34.427v172.13l-6.4717 3.7362h-67.223l-6.8626-3.962z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="Cs2_Db2" d="m808.49 531.77v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="D2"
+                                d="m856.61 527.21v345.75h-18.257v171.92l7.5614 4.3655h65.849l6.9047-3.9864v-172.49h-17.745v-345.56z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="Ds2_Eb2" d="m908.19 531.22v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="E2"
+                                d="m956.82 527.21v345.59h-34.427v172.13l7.7444 4.4714h65.412l7.4137-4.2803v-517.91z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="F2"
+                                d="m1006.6 527.21v517.32l8.3498 4.8208h65.345l6.8118-3.9328v-172.35h-37.339v-345.86z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="Fs2_Gb2" d="m1054.9 531.22v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="Gs2_Ab2" d="m1150.7 531.22v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="As2_Bb2" d="m1246.4 531.22v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="G2"
+                                d="m1102.6 527.21v345.46h-11.834v172.4l6.8212 3.9381h66.201l6.6943-3.865v-172.48h-24.983v-345.46z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="A2"
+                                d="m1198.5 527.21v345.59h-23.534v172l7.8722 4.545h65.688l7.0848-4.0902v-172.72h-14.212v-345.32z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="B2"
+                                d="m1294.1 527.21v345.59h-36.175v172.4l7.4847 4.3212h65.806l7.2325-4.1758v-518.14z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="C3"
+                                d="m1341.4 528.03h45.723v345.34h34.427v172.13l-6.4717 3.7364h-67.223l-6.8629-3.9622z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="Cs3_Db3" d="m1394.8 532.08v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="D3"
+                                d="m1442.9 527.51v345.75h-18.258v171.92l7.5616 4.3655h65.849l6.9049-3.9865v-172.49h-17.745v-345.56z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="Ds3_Eb3" d="m1494.5 531.52v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="E3"
+                                d="m1543.1 527.51v345.59h-34.426v172.13l7.7442 4.4712h65.412l7.4137-4.2803v-517.91z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="F3"
+                                d="m1592.8 527.51v517.32l8.3493 4.8206h65.345l6.8124-3.9331v-172.35h-37.339v-345.86z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="Fs3_Gb3" d="m1641.2 531.52v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="Gs3_Ab3" d="m1737 531.52v334.34h42.601v-334.15z" stroke-width="1.065"
+                                fill="black" />
+                            <path class="key" id="As3_Bb3" d="m1832.7 531.52v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="G3"
+                                d="m1688.9 527.51v345.46h-11.834v172.4l6.8211 3.9382h66.201l6.6944-3.8648v-172.48h-24.984v-345.46z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="A3"
+                                d="m1784.7 527.51v345.59h-23.534v172l7.8724 4.5451h65.688l7.0848-4.0905v-172.72h-14.212v-345.32z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="B3"
+                                d="m1880.4 527.51v345.59h-36.175v172.4l7.4846 4.3208h65.806l7.2325-4.1751v-518.14z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="C4"
+                                d="m1928.3 527.82h45.723v345.34h34.427v172.13l-6.4717 3.7364h-67.223l-6.8628-3.9621z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="Cs4_Db4" d="m1981.7 531.87v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="D4"
+                                d="m2029.8 527.31v345.75h-18.258v171.92l7.5614 4.3655h65.849l6.9046-3.9865v-172.49h-17.745v-345.56z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="Ds4_Eb4" d="m2081.4 531.32v334.34h42.601v-334.15z"
+                                stroke-width="1.065" fill="black" />
+                            <path class="key" id="E4"
+                                d="m2130 527.31v345.59h-34.427v172.13l7.7442 4.471h65.412l7.4136-4.2801v-517.91z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="F4"
+                                d="m2179.8 527.31v517.32l8.3498 4.8209h65.345l6.8121-3.9332v-172.35h-37.339v-345.86z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="Fs4_Gb4" d="m2228.1 531.32v334.34h42.6v-334.15z" stroke-width="1.065"
+                                fill="black" />
+                            <path class="key" id="Gs4_Ab4" d="m2323.9 531.3v332.94h42.422v-332.75z"
+                                stroke-width="1.0606" fill="black" />
+                            <path class="key" id="As4_Bb4" d="m2419.2 531.3v332.94h42.422v-332.75z"
+                                stroke-width="1.0606" fill="black" />
+                            <path class="key" id="G4"
+                                d="m2275.8 527.31v345.46h-11.834v172.4l6.8211 3.9382h66.201l6.6943-3.8647v-172.48h-24.983v-345.46z"
+                                fill="white" stroke-width="1.065" />
+                            <path class="key" id="A4"
+                                d="m2371.5 527.3v344.14h-23.435v171.28l7.8393 4.5263h65.413l7.055-4.0736v-172h-14.153v-343.87z"
+                                fill="white" stroke-width="1.0606" />
+                            <path class="key" id="B4"
+                                d="m2466.7 527.3v344.14h-36.024v171.68l7.453 4.3029h65.531l7.2019-4.158v-515.97z"
+                                fill="white" stroke-width="1.0606" />
+                            <path class="key" id="C5"
+                                d="m2513.5 527.36h45.531v343.9h34.282v171.41l-6.4444 3.7209h-66.941l-6.8338-3.9457z"
+                                fill="white" stroke-width="1.0606" />
+
+                            <path class="key" id="Cs5_Db5" d="m2566.6 531.39v332.94h42.422v-332.75z"
+                                stroke-width="1.0606" fill="black" />
+                            <path class="key" id="D5"
+                                d="m2614.5 526.85v344.3h-18.181v171.2l7.5299 4.3472h65.573l6.8759-3.9694v-171.77h-17.671v-344.11z"
+                                fill="white" stroke-width="1.0606" />
+                            <path class="key" id="Ds5_Eb5" d="m2665.9 530.85v332.94h42.422v-332.75z"
+                                stroke-width="1.0606" fill="black" />
+                            <path class="key" id="E5"
+                                d="m2714.3 526.85v344.14h-34.282v171.41l7.7118 4.4527h65.138l7.3825-4.2625v-515.75z"
+                                fill="white" stroke-width="1.0606" />
+                            <path class="key" id="F5"
+                                d="m2763.9 526.85v515.15l8.3147 4.8005h65.071l6.7834-3.9166v-171.63h-37.182v-344.41z"
+                                fill="white" stroke-width="1.0606" />
+                            <path class="key" id="Fs5_Gb5" d="m2812 530.85v332.94h42.422v-332.75z" stroke-width="1.0606"
+                                fill="black" />
+                            <path class="key" id="Gs5_Ab5" d="m2907.4 530.85v332.94h42.422v-332.75z"
+                                stroke-width="1.0606" fill="black" />
+                            <path class="key" id="As5_Bb5" d="m3002.7 530.85v332.94h42.422v-332.75z"
+                                stroke-width="1.0606" fill="black" />
+                            <path class="key" id="G5"
+                                d="m2859.5 526.85v344.01h-11.785v171.68l6.7926 3.9216h65.924l6.6663-3.8489v-171.75h-24.879v-344.01z"
+                                fill="white" stroke-width="1.0606" />
+                            <path class="key" id="A5"
+                                d="m2955 526.85v344.14h-23.435v171.28l7.8392 4.5263h65.413l7.055-4.0734v-172h-14.153v-343.87z"
+                                fill="white" stroke-width="1.0606" />
+                            <path class="key" id="B5"
+                                d="m3050.2 526.85v344.14h-36.023v171.68l7.4531 4.3034h65.531l7.202-4.1584v-515.97z"
+                                fill="white" stroke-width="1.0606" />
+                            <!-- C6 -->
+                            <path class="key" id="C6"
+                                d="m3097.9 527.16h45.532v343.9h34.282v171.41l-6.4448 3.7209h-66.941l-6.8339-3.9459z"
+                                fill="white" stroke-width="1.0606" />
+                            <path class="key" id="rest" d="m3151.1 531.19v332.94h42.422v-332.75z" stroke-width="1.0606"
+                                fill="black" />
+                        </g>
+                        <text x="177" y="500" data-key="C1" class="key-label">C1</text>
+                        <text x="763" y="500" data-key="C2" class="key-label">C2</text>
+                        <text x="1349" y="500" data-key="C3" class="key-label">C3</text>
+                        <text x="1935" y="500" data-key="C4" class="key-label">C4</text>
+                        <text x="2521" y="500" data-key="C5" class="key-label">C5</text>
+                        <text x="3107" y="500" data-key="C6" class="key-label">C6</text>
+                        <text x="3195" y="60" data-key="rest" class="key-label rest-key">REST</text>
+                    </svg>
+
+                </div>
+                <!-- End keyboard container -->
+            </div>
+            <!-- End right column  -->
+            <!-- </div> -->
+            <!-- End .row -->
+        </div>
+        <!-- END main container -->
+    </div>
+    <!-- End project here-->
+    <!-- Custom scripts -->
+    <script src="js/vue.min.js" type="text/javascript"></script>
+    <!-- <script src="js/lodash.min.js" type="text/javascript"></script> -->
+    <!-- <script src="songs-library2.js" type="text/javascript"></script> -->
+    <!-- <script src="converter.js" type="text/javascript"></script> -->
+    <script src="synth-controller_VUE.js" type="module"></script>
+    <script type="text/javascript">
+        window.addEventListener('resize', () => {
+            const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+            console.log('height', vh);
+            console.log('width', window.innerWidth)
+
+        })
+    </script>
+</body>
+
+</html>
